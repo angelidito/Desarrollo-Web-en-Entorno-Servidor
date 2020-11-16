@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</Head>
+<body>
+<form action="" method="post">
+	Teclee un operando: <input type="text" name="ope1" value="<?php echo "$ope1";?>">
+		<span><font color="red"> * obligatorio. <?php echo $errores['errorope1'];?></font></span><br><br>
+	Teclee un segundo operando:	<input type="text" name="ope2" value="<?php echo "$ope2";?>">
+		<span><font color="red"> * obligatorio. <?php echo $errores['errorope2'];?></font></span><br><br>
+	Teclee el operador: <input type="text" name="operador" value="<?php echo "$operador";?>">
+		<span><font color="red"> * obligatorio. <?php echo $errores['erroroperador'];?></font></span><br><br>
+	<input type="submit" name="enviar">
+</form>
+</body>
+</html>
