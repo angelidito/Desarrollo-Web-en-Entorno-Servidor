@@ -13,11 +13,13 @@
     <?php
     include "becados.php";
 
-    $alum = new Alumno("Ángel", 23, 10);
+    $b1 = new Becado("Ángel", 23, 10, 1000);
+    $b2 = new Becado("Ángel", 23, 10, 2000);
 
-    echo var_dump($alum instanceof Becado);
-
-
+    if ($b1->importebeca > $b2->importebeca)
+        $b1->visualizarbecado();
+    else
+        $b2->visualizarbecado();
     ?>
 
 </body>
