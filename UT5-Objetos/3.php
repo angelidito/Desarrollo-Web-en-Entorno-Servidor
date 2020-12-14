@@ -70,7 +70,7 @@
         } 
         function getPrecio()
         {
-            return $this->pre;
+            return $this->pre; 
         }
         function visualizarbecado()
         {
@@ -81,7 +81,7 @@
             echo $this->tit . "<br>";
             echo $this->gen . "<br>";
             echo $this->pre . "<br>";
-        }
+        }  
     } //fin de la clase Becado
 
     ?>
