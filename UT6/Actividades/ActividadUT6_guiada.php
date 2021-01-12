@@ -21,4 +21,6 @@ while ($fila = mysqli_fetch_row($resultados)) {
 // ACTIVIDAD 1: Amplia la BD ciclo, con una nueva tabla denominada módulo. Tendrá como atributo el código del módulo (denominación abreviada) y la calificación final obtenida por un alumno. Los tipos de los campos serán los que tú consideres oportunos.
 // Dado que la calificación del módulo depende del alumno, piensa en qué otra ampliación necesita tu BD e impleméntala desde php.
 // Además deberás insertar información en las nuevas tablas y por último mostrar los alumnos que estén aprobados en el módulo de DWES.
-// Todo ello desde php utilizando las funciones vistas anteriormente.
+// Todo ello desde php utilizando las funciones vistas anteriormente. 
+
+
