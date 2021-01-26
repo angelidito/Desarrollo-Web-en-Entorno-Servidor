@@ -7,7 +7,7 @@ $db_clave = "";
 $db_nombre = "ciclos";
 
 // Instanciamos la clave mysqli paa etablecer la conexión con la BD
-$conexion = mysqli_connect($db_host, $db_usuario, $db_clave, $db_nombre);
+$conexion = mysqli_connect($db_host, $db_usuario, $db_clave);
 
 // Comprobamos que se ha establecido la conexión
 // Si no lo ha hecho, se sale del programa
