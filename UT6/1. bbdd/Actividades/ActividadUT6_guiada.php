@@ -30,11 +30,16 @@ while ($fila = mysqli_fetch_row($resultados)) {
 // Dado que la calificación del módulo depende del alumno, piensa en qué otra ampliación necesita tu BD e impleméntala desde php.
 $crear =
 	"CREATE table módulo ( 
-		cod int primary key AUTO_INCREMENT, 
-		cali int,
-		CONSTRAINT FK_CALI foreign key REFERENCES alumno(id_al)
+		cod int  AUTO_INCREMENT, 
+		cali int REFERENCES alumno(id_al),
+		PRIMARY KEY (`cod`)
 	);";
 
-var_dump(mysqli_query($conexion, $crear));
+// Ya está creada
+// mysqli_query($conexion, $crear);
+
 // Además deberás insertar información en las nuevas tablas y por último mostrar los alumnos que estén aprobados en el módulo de DWES.
 // Todo ello desde php utilizando las funciones vistas anteriormente. 
+
+
+var_dump(mysqli_query($conexion, "INSERT into módulo (cali) values (2);"));
