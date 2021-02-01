@@ -39,48 +39,73 @@
     $nombre = htmlentities(addslashes($_POST['nombre']));
     $clave = htmlentities(addslashes($_POST['clave']));
 
-    // Consulta
+
+
+    ///////////////////////////////////////////
+    ///////////////////////////////////////////
+    ///////////////////////////////////////////
+    ///////////////////////////////////////////
+    ///////////////////////////////////////////
+    ///////////////////////////////////////////
+    ///////////////////////////////////////////
+    ///////////////////////////////////////////
+    ///////////////////////////////////////////
+    ///////////////////////////////////////////
+    ///////////////////////////////////////////
+    ///////////////////////////////////////////
+    ///////////////////////////////////////////
+    ///////////////////////////////////////////
+
+    // Vemos si el usuarios está en la BD
     $consulta =
         "SELECT * 
-            FROM usuarios 
-            WHERE nombre = '$nombre' 
-                AND clave = '$clave'
-            ;";
+        FROM usuarios 
+        WHERE nombre = '$nombre';";
 
-    $conexion->query($consulta);
+    $usuarios = $conexion->query($consulta);
 
-    // Control si no está encriptada y tiene acceso
+    // Si está, comprobamos la clave
     if ($conexion->affected_rows > 0) {
-        echo '<br>Acceso autorizado<br>';
-    }
-
-    // Control si está enctriptada 
-    else {
-        $consulta =
-            "SELECT * 
-                FROM usuarios 
-                WHERE nombre = '$nombre';";
-
-        $usuarios = $conexion->query($consulta);
 
         $autorizado = 0;
 
-        if ($conexion->affected_rows > 0) {
-            while ($fila = $usuarios->fetch_array) {
-                // Comprobamos la contraseña
-                if (password_verify($clave, $fila['clave'])) {
-                    $autorizado = 1;
-                }
+        while ($fila = $usuarios->fetch_array()) {
+            // Comprobamos la contraseña
+            if (password_verify($clave, $fila['clave'])) {
+                $autorizado = 1;
             }
-        } else {
-            echo '<br>Acceso denegado: usuario no registrado.<br>';
         }
 
-        // Control si no tiene acceso
-        if ($autorizado != 1) {
-            echo '<br>Acceso denegado.<br>';
+        // control si tiene acceso y la clave no está encriptada
+        if ($autorizado == 0) {
+
+            // Consulta
+            $consulta =
+                "SELECT * 
+                FROM usuarios 
+                WHERE nombre = '$nombre' 
+                    AND clave = '$clave'
+                ;";
+            $conexion->query($consulta);
+
+            if ($conexion->affected_rows > 0) {
+                echo '<br>Acceso autorizado con clave no encriptada <br>';
+            } else {
+                echo '<br>Acceso denegado.<br>';
+            }
+        } else {
+            echo '<br>Acceso autorizado con clave enciptada<br>';
         }
     }
+    // Si no está:
+    else {
+        echo '<br>Acceso denegado: usuario no registrado.<br>';
+    }
+
+
+
+
+
 
 
     ?>
