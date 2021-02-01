@@ -41,12 +41,12 @@
     //     foto varchar(50) not null);";
     // $conexion->query($crearObras);
     // $deno = $_POST['texto_id'];
-    // $stmt = $conexion->prepare(
-    //     "INSERT into obras (deno, foto) 
-    //                 values ( ? , ? )"
-    // );
+    $stmt = $conexion->prepare(
+        "INSERT into obras (deno, foto) 
+                    values ( ? , ? )"
+    );
     // echo "<br>Denom: $deno <br> Imagen: $foto<br>";
-    // $stmt->bind_param('ss', $deno, $foto);
+    $stmt->bind_param('ss', $deno, $foto);
     // if (!$stmt->execute())
     //     echo '<br>Error al introducir la foto en la base de datos, es posible que ya exista una imagen con esa denominación o que el texto de los campos supere el máximo de caracteres...<br>';
     // $resultados = $conexion->query("SELECT * from obras");
