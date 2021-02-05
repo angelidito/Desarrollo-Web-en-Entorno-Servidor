@@ -15,10 +15,11 @@ class Conexiones
         $this->bd_link = new mysqli(BD_HOST, BD_USER, BD_PW, BD_NAME);
 
         // Comprobamos la conexión
-        if ($this->bd_link->connect_errno)
+        if ($this->bd_link->connect_errno) {
             echo "Fallo en la conexión...<br>";
-        else
+        } else {
             echo "Consexión establecida.<br>";
+        }
 
         // Asigna el charset
         $this->bd_link->set_charset(BD_CHARSET);
@@ -34,12 +35,11 @@ class Consultas extends Conexiones
         parent::__construct();
     }
 
-    // SELECT * FROM alumno
-    public function getDatos(){
-        $resultado=$this->bd_link->query('SELECT * FROM ALUMNO');
-
+    // SELECT * FROM *
+    public function getDatos()
+    {
+        $resultado=$this->bd_link->query('SELECT * FROM *');
         $datos = $resultado->fetch_all(MYSQLI_ASSOC);
-
         return $datos;
     }
 }

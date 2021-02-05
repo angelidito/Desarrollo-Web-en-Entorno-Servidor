@@ -13,14 +13,24 @@
     #enviar {
         margin: 0.25em 0.7em;
     }
+
+    #errores {
+        color: red;
+        font-weight: bold;
+    }
     </style>
 </head>
 
 <body>
+
+    <?php
+
+
+    ?>
     <br>
     <br>
     <br>
-    <form action="tratamiento.php" method="post" enctype="multipart/form-data">
+    <form action="" method="post" enctype="multipart/form-data">
         <table border=1 align="center" bgcolor="#D0F5A9">
             <tr>
                 <th colspan="2">
@@ -32,7 +42,7 @@
                     <label for="usuario">Usuario:</label>
                 </td>
                 <td>
-                    <input type="text" name="usuario" id="usuario">
+                    <input type="text" name="usuario" id="usuario" autofocus>
                 </td>
             </tr>
             <tr>
@@ -41,15 +51,6 @@
                 </td>
                 <td>
                     <input type="text" name="contraseña" id="contraseña">
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <label>
-                        <input type="radio" name="c" value=1 checked> Crifrar contraseña</label>
-                    <br>
-                    <label>
-                        <input type="radio" name="c" value=0> No crifrar contraseña</label>
                 </td>
             </tr>
             <tr>
@@ -63,10 +64,14 @@
             <tr>
                 <td colspan="2">
                     <input type="submit" id="enviar">
+                    <div id="errores">
+                        <?php echo $errores;?>
+                    </div>
                 </td>
             </tr>
         </table>
     </form>
+
 </body>
 
 </html>

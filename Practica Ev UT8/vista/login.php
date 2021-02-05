@@ -44,15 +44,6 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2">
-                    <label>
-                        <input type="radio" name="c" value=1 checked> Crifrar contraseña</label>
-                    <br>
-                    <label>
-                        <input type="radio" name="c" value=0> No crifrar contraseña</label>
-                </td>
-            </tr>
-            <tr>
                 <td colspan="2"><input type="submit" id="enviar"></td>
             </tr>
         </table>
