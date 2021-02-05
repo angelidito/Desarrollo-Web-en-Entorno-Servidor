@@ -11,19 +11,21 @@
     <br>
     <br>
     <br>
-    <form action="tratamiento.php" method="post" enctype="multipart/form-data">
+    <form action="autorizar.php" method="post" enctype="multipart/form-data">
         <table border=1 align="center" bgcolor="#D0F5A9">
             <tr>
-                <td>Denominación: </td>
-                <td><input type="text" name="texto_id"></td>
+                <td colspan="2">Acceso:</td>
             </tr>
             <tr>
-                <td>Imagen: </td>
-                <td><input type="file" name="imagen1" size="20"></td>
+                <td>Usuario: </td>
+                <td><input type="text" name="nombre"></td>
             </tr>
             <tr>
-                <td colspan="2"><input type="submit" name="">
-                </td>
+                <td>Password: </td>
+                <td><input type="text" name="clave"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" name=""></td>
             </tr>
         </table>
     </form>
