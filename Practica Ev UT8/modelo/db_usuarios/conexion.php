@@ -1,10 +1,11 @@
 <?php
 
-require("datos_config.php");
-require("../excepciones.php");
+require "datos_config.php";
+//  require "../excepciones.php";
+require "../modelo/excepciones.php";
 
 // CONEXIONES
-class Conexiones
+class Conexion
 {
     // Conexión objeto de tipo mysqli
     protected $conn;
@@ -18,18 +19,18 @@ class Conexiones
         // Comprobamos la conexión
         if ($this->conn->connect_errno) {
             echo "Fallo en la conexión...<br>";
-        } else {
-            echo "Consexión establecida.<br>";
         }
+        // else {
+        //     echo "Consexión establecida.<br>";
+        // }
         
-
         // Asigna el charset
         $this->conn->set_charset(BD_CHARSET);
     }
 }
 
 // CONSULTAS
-class Consultas extends Conexiones
+class Consulta extends Conexion
 {
     // Constructor
     public function __construct()
@@ -41,7 +42,9 @@ class Consultas extends Conexiones
     /**
      * Comprueba que exista un usuario en la BD.
      *
-     * @return boolean True si ya existe; falso si no.
+     * @param string $usuario Usuario a comprobar.
+     *
+     * @return boolean True si ya existe; false si no.
      */
     public function existeUsiario($usuario)
     {
@@ -57,6 +60,75 @@ class Consultas extends Conexiones
     /**
      * Añade un usuario a la base de datos.
      *
+     * @param string $usuario Nombre de usuario.
+     * @param string $contraseña Contraseña.
+     * @param string $imagen Imagen de usuario.
+     *
      * @throws UsuarioYaRegistradoException Si ya existe el usuario que se pretende introducir.
      */
+    public function añadirUsuario($usuario, $contraseña, $imagen)
+    {
+        if ($this->existeUsiario($usuario)) {
+            throw new UsuarioYaRegistradoException("Ya hay un usuario registrado con ese nombre. <br>Escoja otro o inicie sesión.");
+        }
+        $hash = password_hash($contraseña, PASSWORD_DEFAULT);
+        $insert =
+            "INSERT 
+                INTO 
+                    usuarios
+                VALUES
+                    ('$usuario', '$hash', '$imagen');
+            ";
+
+        // echo $insert;
+        
+        $this->conn->query($insert);
+        
+        if ($this->conn->affected_rows<1) {
+            throw new Exception("Algo no ha ido bien en la inserción, pero si llega a aparecer este mensaje, admito que no sé el qué... :(");
+        }
+    }
+
+    /**
+     * Comprueba que el usuario y la contraseña coinciden con la BD.
+     *
+     * Si el usuario y la contraseña son correctos, devolverá true.
+     *
+     * Si el usuario existe en la BD, pero la contraseña es incorrecta, devolverá false.
+     *
+     * @param string $usuario Usuario que pretende iniciar sesión.
+     * @param string $contraseña Contraseña del usuario.
+     *
+     * @throws UsuarioNoRegistradoException Si ni el usuario ni la contraseña condicen.
+     * @throws Exception Si se encuentra más de un usuario.
+     *
+     * @return mixed true si coinciden; false si no.
+     */
+    public function logIn($usuario, $contraseña)
+    {
+        $select =
+            "SELECT
+                contraseña
+            FROM
+                usuarios
+            WHERE
+                usuario = '$usuario'
+            ;";
+
+        $resultado = $this->conn->query($select);
+
+        if ($this->conn->affected_rows<1) {
+            throw new UsuarioNoRegistradoException("No se ha podido encontrar el usuario \"$usuario\"");
+        } elseif ($this->conn->affected_rows>1) {
+            throw new Exception("Si estás viendo este error es que algo ha ido rematadamente mal y hay dos usuarios con el mismo nombre. Lo cual no debería ser posible ya que es la clave primaria, pero vamos a contemplarlo por si las moscas.");
+        }
+
+        $fila = $resultado->fetch_array();
+        // Comprobamos la contraseña
+        if (password_verify($contraseña, $fila['contraseña'])) {
+            return true;
+        }
+        // Si no coincice:
+        return false;
+    }
 }

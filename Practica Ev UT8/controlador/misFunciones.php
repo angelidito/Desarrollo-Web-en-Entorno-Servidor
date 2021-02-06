@@ -13,7 +13,7 @@
 function tabularMatriz($matrizDatos, $arrayCabeceras = null)
 {
     // Tabla
-    echo "<table border=1>";
+    echo '<table border=1 >';
 
     // Encabezados
     if ($arrayCabeceras != null) {

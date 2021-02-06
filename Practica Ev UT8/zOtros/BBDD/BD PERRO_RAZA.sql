@@ -12,40 +12,40 @@ INSERT INTO
 VALUES
     ('Caniche gigante', 'Peinar 28 veces al día'),
     (
-        'Pastor leonés',
+        'pastor leonés',
         'Peregrinar a León al menos una vez al año y vestirse de oveja para que te pastoree.'
     ),
     (
-        'Bóxer',
+        'bóxer',
         'Al contrario de lo que mucha gente piensa este perro no le gusta el boxeo, pero si el ballet.'
     ),
     (
-        'Cocker spaniel inglés',
+        'cocker spaniel inglés',
         'Té a las 5 p. m. Todos los días, sin excepción.'
     ),
     ('Dálmata', 'No'),
     (
-        'Galgo español',
+        'galgo español',
         'Debe conocer todas las capitales de provincia y comunidad de autónoma antes de cumplir los seis meses. Es de centro.'
     ),
     (
-        'Husky siberiano',
+        'husky siberiano',
         'Largos paseos por la nieve en invierno y agua con hielo en verano.'
     ),
     (
-        'Pastor alemán',
+        'pastor alemán',
         'Peregrinar a Berín al menos una vez al año y vestirse de oveja para que te pastoree.'
     ),
     (
-        'San bernardo',
+        'san bernardo',
         'Es alcohólico: no tener alcohól en casa.'
     ),
     (
-        'Mastín español',
+        'mastín español',
         'Debe conocer todas las capitales de provincia y comunidad de autónoma antes de cumplir. No tiene preferencias en cuando a partídos politicos, piensa que el feudalismo es la mejor opción.'
     );
 
-CREATE TABLE IF NOT EXISTS perro2 (
+CREATE TABLE IF NOT EXISTS perro (
     id INT AUTO_INCREMENT,
     nombre VARCHAR(30) NOT NULL,
     horas_paseo INT NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS perro2 (
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_general_ci;
 
 INSERT INTO
-    perro2 (nombre, horas_paseo, dueño, id_raza)
+    perro (nombre, horas_paseo, dueño, id_raza)
 VALUES
     ('Bonnie', 1, 'Joaquin Gómez', 1),
     ('Clyde', 2, 'Eusebia Murillo', 1),

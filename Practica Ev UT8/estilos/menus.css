@@ -1,0 +1,13 @@
+li {
+    list-style-type: none;
+    margin-bottom: 1em;
+}
+
+input {
+    margin-right: 1em;
+}
+
+#errores {
+    color: red;
+    font-weight: bold;
+}
