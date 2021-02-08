@@ -31,7 +31,7 @@ try {
     }
 } catch (LongitudParametrosException $e) {
     $errores .= $e->getMessage();
-} catch (BDException $e) {
+} catch (NoFilasAfectadasException $e) {
     $errores .= $e->getMessage();
 }
 

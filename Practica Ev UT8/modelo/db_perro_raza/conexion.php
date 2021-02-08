@@ -6,8 +6,7 @@ require '../modelo/perro_raza.php';
 
 
 /**
- * Crea una conexión con la BD perros_raza.
- *
+ * Clase con conexión a la BD perros_raza.
  *
  * @param mysqli $conn
  */
@@ -51,7 +50,7 @@ class Consulta extends Conexion
     /**
      * Constructor de la clase.
      *
-     * Crea una conexión con la BD perro_raza.
+     * Establece una conexión con la BD perro_raza.
      */
     public function __construct()
     {
@@ -88,7 +87,7 @@ class Consulta extends Conexion
      *
      * @return int El ID del perro añadido a la base de datos
      *
-     * @throws BadInsertException Si el insert no se ha podido realizar
+     * @throws NoFilasAfectadasException Si no se ha visto afectada ninguna fila de la BD.
      */
     public function añadirPerro($perro, $id_raza)
     {
@@ -104,22 +103,21 @@ class Consulta extends Conexion
         $this->conn->query($insert);
 
         if ($this->conn->affected_rows < 1) {
-            throw new BadInsertException('Aparentemente algo a ido mal y no se ha realizado el insert.');
+            // No sé qué podría hacer que se lanzase. Creo que nada, pero por si acaso.
+            throw new NoFilasAfectadasException('Aparentemente algo a ido mal y no se ha realizado el insert.');
         }
 
-        return $this->getNumPerros();
+        return $this->getUltimoIdPerro();
     }
 
     /**
-     * Duevuelve el núemro de perros de la BD.
+     * Duevuelve el ID del último perro añadido a la BD.
      *
-     * El número de perros coincide con el ID del último perro que se ha añadido a la base de datos.
-     *
-     * @return int Nº de perros en la BD.
+     * @return int ID del último perro añadido.
      */
-    public function getNumPerros()
+    public function getUltimoIdPerro()
     {
-        return $this->conn->query("SELECT id FROM perro ORDER BY  id DESC LIMIT 1;")->fetch_all(MYSQLI_NUM)[0][0];
+        return $this->conn->query("SELECT id FROM perro ORDER BY id DESC LIMIT 1;")->fetch_all(MYSQLI_NUM)[0][0];
     }
 
     /**
@@ -131,7 +129,7 @@ class Consulta extends Conexion
      *
      * @return mixed Array de arrays asociativos, esto últimos tendrán con los campos 'id', 'nombre', 'horas_paseo' y 'dueño'.
      *
-     * @throws BDException Si no se encuentran perros de la raza especificada.
+     * * @throws NoFilasAfectadasException Si no se ha visto afectada ninguna fila de la BD.
      */
     public function getPerrosPorRaza($id_raza)
     {
@@ -147,7 +145,9 @@ class Consulta extends Conexion
         $resultados = $this->conn->query($select);
 
         if ($this->conn->affected_rows < 1) {
-            throw new BDException('Aparentemente algo a ido mal y no se ha encontrado ningún perro de la raza escojida. Contacte con el administraodr para que se asegure de que existen perros de esta raza. <br> De cualquier forma, tenga en cuenta que es posible que no haya sido añadido todavía ninguno.');
+            // $id_raza se obtiene de las propia base de datos, por lo que no debería lanzarase por su culpa.
+            // No sé qué podría hacer que se lanzase. Creo que nada, pero por si acaso.
+            throw new NoFilasAfectadasException('Aparentemente algo a ido mal y no se ha encontrado ningún perro de la raza escojida. Contacte con el administrador para que se asegure de que existen perros de esta raza. <br> De cualquier forma, tenga en cuenta que es posible que no haya sido añadido todavía ninguno.');
         }
 
         return $resultados->fetch_all(MYSQLI_ASSOC);
@@ -159,7 +159,7 @@ class Consulta extends Conexion
      * @param int $id_raza ID de la raza a actualizar.
      * @param string Descripción de los cuidados especiales.
      *
-     * @throws BDException Si no ha podido actualizarlos.
+     * @throws NoFilasAfectadasException Si no se ha visto afectada ninguna fila de la BD.
      */
     public function actualizarCuidados($id_raza, $cuidados_especiales)
     {
@@ -174,7 +174,9 @@ class Consulta extends Conexion
         $this->conn->query($update);
 
         if ($this->conn->affected_rows < 1) {
-            throw new BDException("Algo ha fallado y no debería haberlo hecho. Contacte con el administrador: no ha sido posible actualizar el registro.");
+            // $id_raza se obtiene de las propia base de datos, por lo que no debería lanzarase por su culpa.
+            // No sé qué podría hacer que se lanzase. Creo que nada, pero por si acaso.
+            throw new NoFilasAfectadasException("Algo ha fallado y no debería haberlo hecho. Contacte con el administrador: no ha sido posible actualizar el registro.");
         }
     }
 
@@ -183,7 +185,7 @@ class Consulta extends Conexion
      *
      * @param int $id_perro ID del perro a borrar.
      *
-     * @throws BDException Si no ha podido borrarlo.
+     * @throws NoFilasAfectadasException Si no se ha visto afectada ninguna fila de la BD.
      */
     public function eliminarPerro($id_perro)
     {
@@ -197,7 +199,7 @@ class Consulta extends Conexion
         $this->conn->query($delete);
 
         if ($this->conn->affected_rows < 1) {
-            throw new BDException("Algo ha fallado y no debería haberlo hecho. Contacte con el administrador: no ha sido posible eliminar el registro.");
+            throw new NoFilasAfectadasException("No se ha encontrado el ID en la base de datos, por lo que no ha sido posible eliminar el registro.");
         }
     }
 }

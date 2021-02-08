@@ -37,7 +37,7 @@ try {
             throw new ParametrosException("Las horas de paseo deben ser un número");
         }
         if ($horas_paseo>12 || strlen($dueño)< 1) {
-            throw new ParametrosException("El perro debe pasear diariamente entre 1 y 12 horas");
+            throw new LongitudParametrosException("El perro debe pasear diariamente entre 1 y 12 horas");
         }
         $horas_paseo = round($horas_paseo);
 
@@ -54,11 +54,9 @@ try {
                 . "</p>";
     }
 } catch (ParametrosException $e) {
-    echo 'sdfljfjfls';
     $errores .= $e->getMessage();
-} catch (BadInsertException $e) {
+} catch (NoFilasAfectadasException $e) {
     $errores .= $e->getMessage();
-    echo 'sdfljfjfls';
 }
 
 

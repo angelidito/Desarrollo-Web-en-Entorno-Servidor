@@ -54,15 +54,13 @@ try {
         $conn->añadirUsuario($usuario, $contraseña, $contenido);
         
         // Carga la pagina de consultas de la base de dados PR (perro_raza)
-        header('Location: menu.php');
+        header('Location: control_menu.php');
     }
     // Fin del if (isset($_POST['enviar']));
-} catch (LongitudParametrosException $e) {
-    $errores = $e->getMessage();
-} catch (BadImgException $e) {
+} catch (ParametrosException $e) {
     $errores = $e->getMessage();
 } catch (UsuarioYaRegistradoException $e) {
-    $errores = $e->getMessage();
+    $errores = "Ya hay un usuario registrado con ese nombre. <br>Escoja otro o inicie sesión."; // Por variar un poco la forma de hacer las cosas, no he añadido un mensaje al construir esta excepción en concreto
 } catch (Exception $e) {
     $errores = $e->getMessage();
 }

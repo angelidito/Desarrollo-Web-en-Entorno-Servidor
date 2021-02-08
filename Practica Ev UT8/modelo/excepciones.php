@@ -1,11 +1,11 @@
 <?php
 // Excepción imagenes
-class BadImgException extends Exception
-{
-}
 
 // Excepciones parametros
 class ParametrosException extends Exception
+{
+}
+class BadImgException extends ParametrosException
 {
 }
 class LongitudParametrosException extends ParametrosException
@@ -23,6 +23,6 @@ class UsuarioYaRegistradoException extends BDException
 class UsuarioNoRegistradoException extends BDException
 {
 }
-class BadInsertException extends BDException
+class NoFilasAfectadasException extends BDException
 {
 }

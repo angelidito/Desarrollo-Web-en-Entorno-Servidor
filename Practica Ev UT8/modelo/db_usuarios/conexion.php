@@ -69,7 +69,7 @@ class Consulta extends Conexion
     public function añadirUsuario($usuario, $contraseña, $imagen)
     {
         if ($this->existeUsiario($usuario)) {
-            throw new UsuarioYaRegistradoException("Ya hay un usuario registrado con ese nombre. <br>Escoja otro o inicie sesión.");
+            throw new UsuarioYaRegistradoException();
         }
         $hash = password_hash($contraseña, PASSWORD_DEFAULT);
         $insert =
@@ -100,9 +100,9 @@ class Consulta extends Conexion
      * @param string $contraseña Contraseña del usuario.
      *
      * @throws UsuarioNoRegistradoException Si ni el usuario ni la contraseña condicen.
-     * @throws Exception Si se encuentra más de un usuario.
+     * @throws Exception Si se encuentra más de un usuario. No debería ocurrir si la BD está bien diseñada.
      *
-     * @return mixed true si coinciden; false si no.
+     * @return mixed Si coinciden los datos con la BD true; false si no.
      */
     public function logIn($usuario, $contraseña)
     {

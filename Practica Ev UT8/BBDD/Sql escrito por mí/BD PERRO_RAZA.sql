@@ -10,7 +10,10 @@ CREATE TABLE IF NOT EXISTS raza (
 INSERT INTO
     raza (raza, cuidados_especiales)
 VALUES
-    ('Caniche gigante', 'Peinar 28 veces al día'),
+    (
+        'caniche gigante',
+        'Peinar 28 veces al día'
+    ),
     (
         'pastor leonés',
         'Peregrinar a León al menos una vez al año y vestirse de oveja para que te pastoree.'
@@ -23,7 +26,7 @@ VALUES
         'cocker spaniel inglés',
         'Té a las 5 p. m. Todos los días, sin excepción.'
     ),
-    ('Dálmata', 'No'),
+    ('dálmata', 'No'),
     (
         'galgo español',
         'Debe conocer todas las capitales de provincia y comunidad de autónoma antes de cumplir los seis meses. Es de centro.'

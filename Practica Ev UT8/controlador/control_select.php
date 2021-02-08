@@ -10,7 +10,6 @@ $errores='';
 $perrosDeRaza=[];
 // Conexión
 $conn = new Consulta();
-
 // Datos que contendrá el formulario si no se ha recibido un POST
 $id_raza='';
 
@@ -37,14 +36,14 @@ try {
             array_push($perrosDeRaza, $datosPerro);
         }
     }
-} catch (BDException $e) {
+} catch (NoFilasAfectadasException $e) {
     $errores .= $e->getMessage();
-    $perrosDeRaza=[];
+    $perrosDeRaza=[]; // por si las moscas
 }
 
 // Con esta variable completamos el formulario ya que nos hace falta saber las razas existentes a la hora de añadir un perro a la BD
 $razas='';
-// value almacenar el id y la raza separados por un guión
+// Value almacenar el id y la raza separados por un guión
 foreach ($conn->getDatosRaza() as $fila) {
     $razas .= "<option value='" . $fila['id'] . "-". $fila['raza'] ."' " ;
     if ($fila['id']==$id_raza) {

@@ -32,10 +32,6 @@ class Perro
         return $this->dueño;
     }
 
-    public function cambiarDueño($_dueño)
-    {
-        $this->dueño = $_dueño;
-    }
 
     /**
      * Duevuelve la información del objeto.
@@ -90,11 +86,19 @@ class Raza extends Perro
     }
 
     /**
-     *
+     *  @return string Los cuidados especiales de la raza.
      */
     public function getCuidadosEspeciales()
     {
         return $this->cuidados_especiales;
+    }
+
+    /**
+     *  Modifica los cuidados especiales de la raza.
+     */
+    public function setCuidadosEspeciales($_cuidados_especiales)
+    {
+        $this->cuidados_especiales = $_cuidados_especiales;
     }
     
     /**
