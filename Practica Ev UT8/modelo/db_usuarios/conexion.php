@@ -85,7 +85,7 @@ class Consulta extends Conexion
         $this->conn->query($insert);
         
         if ($this->conn->affected_rows<1) {
-            throw new Exception("Algo no ha ido bien en la inserción, pero si llega a aparecer este mensaje, admito que no sé el qué... :(");
+            throw new Exception("Algo no ha ido bien en la inserción, pero si llega a aparecer este mensaje, no sé qué puede haber sido aparte de la base de datos: que no esté creada o que esté mal creada.");
         }
     }
 
@@ -118,7 +118,7 @@ class Consulta extends Conexion
         $resultado = $this->conn->query($select);
 
         if ($this->conn->affected_rows<1) {
-            throw new UsuarioNoRegistradoException("No se ha podido encontrar el usuario \"$usuario\"");
+            throw new UsuarioNoRegistradoException("No se ha podido encontrar el usuario \"$usuario\". Si no está registrado, puede hacerlo <a href='control_registro.php'>aquí</a>.");
         } elseif ($this->conn->affected_rows>1) {
             throw new Exception("Si estás viendo este error es que algo ha ido rematadamente mal y hay dos usuarios con el mismo nombre. Lo cual no debería ser posible ya que es la clave primaria, pero vamos a contemplarlo por si las moscas.");
         }

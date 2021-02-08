@@ -26,7 +26,10 @@
 
 
             </li>
-            <li><input type="submit" value="Notificar defunción" name="notificar"></li>
+            <li>
+                <input type="submit" value="Notificar defunción" name="notificar">
+                <a href="../controlador/control_menu.php">Volver atras</a>
+            </li>
         </ul>
 
         <div id="errores">

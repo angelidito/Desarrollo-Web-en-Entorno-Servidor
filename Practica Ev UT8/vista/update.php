@@ -32,6 +32,7 @@
             </li>
             <li>
                 <input type="submit" value="Actualizar" name="actualizar">
+                <a href="../controlador/control_menu.php">Volver atras</a>
             </li>
         </ul>
 

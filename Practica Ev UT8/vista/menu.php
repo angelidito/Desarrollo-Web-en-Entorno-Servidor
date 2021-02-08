@@ -40,11 +40,11 @@
             </li>
             <li>
                 <label>
-                    <input type="radio" name="op" value="D">Notificar muerte la muerte de un perro
+                    <input type="radio" name="op" value="D">Notificar defunción
                 </label>
             </li>
         </ul>
-        <input type="submit" value="Enviar" name="enviar">
+        <input type="submit" value="Selecionar opción" name="enviar">
         <div id="errores">
             <?php echo $errores?>
         </div>

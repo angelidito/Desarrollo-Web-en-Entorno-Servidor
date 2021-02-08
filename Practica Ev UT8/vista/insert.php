@@ -33,7 +33,10 @@
                     <?php echo $razas?>
                 </select>
             </li>
-            <li><input type="submit" value="Añadir perro" name="añadir"></li>
+            <li>
+                <input type="submit" value="Añadir perro" name="añadir">
+                <a href="../controlador/control_menu.php">Volver atras</a>
+            </li>
         </ul>
 
         <div id="errores">

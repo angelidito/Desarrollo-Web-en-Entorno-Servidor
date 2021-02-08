@@ -10,16 +10,11 @@
 </head>
 
 <body>
-
-    <?php
-
-
-    ?>
     <br>
     <br>
     <br>
     <form action="" method="post" enctype="multipart/form-data">
-        <table border=1 align="center" bgcolor="#D0F5A9">
+        <table border=1 align="center" bgcolor="#D0F5A9" id="registro">
             <tr>
                 <th colspan="2">
                     Registro
@@ -52,6 +47,7 @@
             <tr>
                 <td colspan="2">
                     <input type="submit" id="enviar" name="enviar">
+                    <a href="..">Volver inicio</a>
                     <div id="errores">
                         <?php echo $errores; ?>
                     </div>
@@ -59,7 +55,6 @@
             </tr>
         </table>
     </form>
-
 </body>
 
 </html>

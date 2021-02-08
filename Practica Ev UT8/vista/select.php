@@ -21,7 +21,10 @@
                     <?php echo $razas?>
                 </select>
             </li>
-            <li><input type="submit" value="Realiar búsqueda" name="buscar"></li>
+            <li>
+                <input type="submit" value="Realiar búsqueda" name="buscar">
+                <a href="../controlador/control_menu.php">Volver atras</a>
+            </li>
         </ul>
 
         <div id="errores">

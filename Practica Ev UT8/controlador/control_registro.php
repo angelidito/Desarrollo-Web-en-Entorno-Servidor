@@ -60,7 +60,7 @@ try {
 } catch (ParametrosException $e) {
     $errores = $e->getMessage();
 } catch (UsuarioYaRegistradoException $e) {
-    $errores = "Ya hay un usuario registrado con ese nombre. <br>Escoja otro o inicie sesión."; // Por variar un poco la forma de hacer las cosas, no he añadido un mensaje al construir esta excepción en concreto
+    $errores = "Ya hay un usuario registrado con ese nombre. <br>Escoja otro o <a href='control_login.php'>inicie sesión</a>."; // Por variar un poco la forma de hacer las cosas, no he añadido un mensaje al construir esta excepción en concreto
 } catch (Exception $e) {
     $errores = $e->getMessage();
 }
