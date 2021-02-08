@@ -164,11 +164,12 @@ class Consulta extends Conexion
     public function actualizarCuidados( $id_raza, $raza)
     {
 
+        $cuidados = $raza->getCuidadosEspeciales();
         $update =
             "UPDATE 
                 raza 
             SET 
-                cuidados_especiales = '$raza->getCuidadosEspeciales()'
+                cuidados_especiales = '$cuidados'
             WHERE id = $id_raza
             ;";
         
@@ -177,7 +178,7 @@ class Consulta extends Conexion
         if ($this->conn->affected_rows < 1) {
             // $id_raza se obtiene de las propia base de datos, por lo que no debería lanzarase por su culpa.
             // No sé qué podría hacer que se lanzase. Creo que nada, pero por si acaso.
-            throw new NoFilasAfectadasException("Algo ha fallado y no debería haberlo hecho. Contacte con el administrador: no ha sido posible actualizar el registro.");
+            throw new NoFilasAfectadasException("No se ha actulizado ningun registro. Compruebe que el texto insertado es distinto del existente.");
         }
     }
 

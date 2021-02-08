@@ -25,19 +25,19 @@ try {
         $id_raza = explode('-', $_POST['raza'], 2)[0];
         $raza = explode('-', $_POST['raza'], 2)[1];
 
-        
+         
         // Control de errores
         if (strlen($nombre)>30 || strlen($nombre)< 2) {
             throw new LongitudParametrosException("El nombre del perro debe tener entre 2 y 30 caracteres");
-        }
-        if (strlen($dueño)>40 || strlen($dueño)< 2) {
-            throw new LongitudParametrosException("El nombre del dueño debe tener entre 2 y 40 caracteres");
         }
         if (!is_numeric($horas_paseo)) {
             throw new ParametrosException("Las horas de paseo deben ser un número");
         }
         if ($horas_paseo>12 || strlen($dueño)< 1) {
-            throw new LongitudParametrosException("El perro debe pasear diariamente entre 1 y 12 horas");
+            throw new LongitudParametrosException("El perro debe pasear entre 1 y 12 horas diariamente");
+        }
+        if (strlen($dueño)>40 || strlen($dueño)< 2) {
+            throw new LongitudParametrosException("El nombre del dueño debe tener entre 2 y 40 caracteres");
         }
         $horas_paseo = round($horas_paseo);
 
@@ -67,7 +67,7 @@ $razas='';
 foreach ($conn->getDatosRaza() as $fila) {
     $razas .= "<option value='" . $fila['id'] . "-". $fila['raza'] ."' " ;
 
-    if ($fila['id']==$raza) {
+    if ($fila['id']==$id_raza) {
         $razas.= 'selected';
     }
     $razas .= ">" . $fila['raza'] . "</option>";
