@@ -16,6 +16,10 @@ try {
 
         $conn = new Consulta();
 
+        if (strlen($usuario) < 1 || strlen($contraseña) < 1) {
+            throw new LongitudParametrosException("Rellene los campos usuario y contraseña");
+        }
+
         // Comprobamos si el usuario y la contraseña coinciden.
         // Esta función puede lanzar excepciones
         $autorizado = $conn->logIn($usuario, $contraseña);
@@ -29,6 +33,8 @@ try {
         $errores = "Constaseña incorrecta.";
     }
     // Fin del if (isset($_POST['enviar']));
+} catch (LongitudParametrosException $e) {
+    $errores = $e->getMessage();
 } catch (UsuarioNoRegistradoException $e) {
     $errores = $e->getMessage();
 } catch (Exception $e) {
