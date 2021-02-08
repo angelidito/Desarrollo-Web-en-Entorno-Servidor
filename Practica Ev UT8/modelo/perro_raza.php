@@ -70,7 +70,7 @@ class Raza extends Perro
     /**
      *
      */
-    public function __construct($nombre, $horas_de_paseo, $dueño, $_raza, $_cuidados_especiales)
+    public function __construct($_raza, $_cuidados_especiales = '', $nombre = '', $horas_de_paseo = 0, $dueño = '')
     {
         parent::__construct($nombre, $horas_de_paseo, $dueño);
         $this->raza = $_raza;

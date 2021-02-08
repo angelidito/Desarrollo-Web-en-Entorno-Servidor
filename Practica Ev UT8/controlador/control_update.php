@@ -27,7 +27,12 @@ try {
             throw new LongitudParametrosException("La descripción de los cuidados especiales debe tener entre 2 y 500 caracteres. Si la raza no requiere un cuidado especial escriba simplemente 'no'.");
         }
 
-        $conn->actualizarCuidados($id_raza, $cuidados_especiales);
+        //Creamos el objeto Raza
+        $objetoRaza = new Raza($raza);
+        // Le añadimos los cuidados especiales 
+        $objetoRaza->setCuidadosEspeciales($cuidados_especiales);    // (aunque podríamos haberlo hecho en el constructor)
+        // Actualizamos los cuidados en la BD
+        $conn->actualizarCuidados($id_raza, $objetoRaza, $cuidados_especiales);
     }
 } catch (LongitudParametrosException $e) {
     $errores .= $e->getMessage();

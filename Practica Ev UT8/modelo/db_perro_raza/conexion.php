@@ -157,17 +157,18 @@ class Consulta extends Conexion
      * Actualiza los cuidados especiales de una raza.
      *
      * @param int $id_raza ID de la raza a actualizar.
-     * @param string Descripción de los cuidados especiales.
+     * @param Raza $raza Raza a cambiar los cuidados.
      *
      * @throws NoFilasAfectadasException Si no se ha visto afectada ninguna fila de la BD.
      */
-    public function actualizarCuidados($id_raza, $cuidados_especiales)
+    public function actualizarCuidados( $id_raza, $raza)
     {
+
         $update =
             "UPDATE 
                 raza 
             SET 
-                cuidados_especiales = '$cuidados_especiales' 
+                cuidados_especiales = '$raza->getCuidadosEspeciales()'
             WHERE id = $id_raza
             ;";
         
