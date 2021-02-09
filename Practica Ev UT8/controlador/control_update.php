@@ -1,7 +1,13 @@
 <?php
+
+// Control de sesión para no acceder al programa sin iniciarla
+session_start();
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ..?SesionNoIniciada=");
+}
+
 require '../modelo/db_perro_raza/conexion.php';
-// Este fichero contiene una función que usaremos en la vista select.php
-// La usaremos para crear una tabla
+// Este fichero contiene una función que usaremos en la vista select.php. La usaremos para crear una tabla
 require 'misFunciones.php';
 
 // Mensajes
@@ -29,7 +35,7 @@ try {
 
         //Creamos el objeto Raza
         $objetoRaza = new Raza($raza);
-        // Le añadimos los cuidados especiales 
+        // Le añadimos los cuidados especiales
         $objetoRaza->setCuidadosEspeciales($cuidados_especiales);    // (aunque podríamos haberlo hecho en el constructor)
         // Actualizamos los cuidados en la BD
         $conn->actualizarCuidados($id_raza, $objetoRaza, $cuidados_especiales);

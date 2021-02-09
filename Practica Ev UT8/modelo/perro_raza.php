@@ -86,7 +86,7 @@ class Raza extends Perro
     }
 
     /**
-     *  @return string Los cuidados especiales de la raza.
+     * @return string Los cuidados especiales de la raza.
      */
     public function getCuidadosEspeciales()
     {

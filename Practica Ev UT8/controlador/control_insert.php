@@ -1,4 +1,11 @@
 <?php
+
+// Control de sesión para no acceder al programa sin iniciarla
+session_start();
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ..?SesionNoIniciada=");
+}
+
 require '../modelo/db_perro_raza/conexion.php';
 
 // Mensaje de error, sea el que sea

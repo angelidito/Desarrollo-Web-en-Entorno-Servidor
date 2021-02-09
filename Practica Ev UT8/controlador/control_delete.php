@@ -1,4 +1,11 @@
 <?php
+
+// Control de sesión para no acceder al programa sin iniciarla
+session_start();
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ..?SesionNoIniciada=");
+}
+
 require '../modelo/db_perro_raza/conexion.php';
 // Este fichero contiene una función que usaremos en la vista select.php
 // La usaremos para crear una tabla
@@ -24,7 +31,7 @@ try {
 
         $conn->eliminarPerro($id_perro);
 
-        $mensaje = 'Notificación recibida. Ahora, reciba usted mi pésame.<br>Su perro ha sido borrado de la base de datos. Ahora, al ser usted un usuario premium, procederémos a bórrarselo a usted de la memoria...';
+        $mensaje = 'Notificación recibida.<br>Ahora, reciba usted mi pésame.<br>Su perro ha sido borrado de la base de datos.<br>Vamos proceder a borrarle el recuerdo de la memoria...';
     }
 } catch (ParametrosException $e) {
     $errores .= $e->getMessage();

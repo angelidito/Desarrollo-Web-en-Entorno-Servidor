@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    <p>Bienvenido, <?php echo $_SESSION['usuario']?>.</p>
     <h1>Registro de Perros de Raza</h1>
     <p>
         Nuestra base de datos pone a su disposición a más de cuatrocientos perros de diez razas diferentes.
@@ -45,11 +46,11 @@
             </li>
         </ul>
         <input type="submit" value="Selecionar opción" name="enviar">
+        <input type="submit" value="Cerrar sesión" name="cerrar">
         <div id="errores">
             <?php echo $errores?>
         </div>
     </form>
-
 
 </body>
 

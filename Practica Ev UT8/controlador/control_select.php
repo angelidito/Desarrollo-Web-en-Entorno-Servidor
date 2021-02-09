@@ -1,7 +1,13 @@
 <?php
+
+// Control de sesión para no acceder al programa sin iniciarla
+session_start();
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ..?SesionNoIniciada=");
+}
+
 require '../modelo/db_perro_raza/conexion.php';
-// Este fichero contiene una función que usaremos en la vista select.php
-// La usaremos para crear una tabla
+// Este fichero contiene una función que usaremos en la vista select.php. La usaremos para crear una tabla
 require 'misFunciones.php';
 
 // Mensaje de error, sea el que sea

@@ -1,6 +1,18 @@
 <?php
-// require '../modelo/db_perro_raza/conexion.php';
-// require_once '../modelo/excepciones.php';
+
+session_start();
+
+if (isset($_POST['cerrar'])) {
+    $_SESSION = array();
+    setcookie(session_name(), '', time() - 3600, '/', '', 0, 0);
+    session_destroy();
+    header("Location: ..");
+}
+
+// Control de sesión para no acceder al programa sin iniciarla
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ..?SesionNoIniciada=");
+}
 
 $errores='';
 

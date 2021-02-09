@@ -1,4 +1,10 @@
 <?php
+// Control de sesión
+session_start();
+if (isset($_SESSION['usuario'])) {
+    header("Location: controlador/control_menu.php");
+}
+
 require('../modelo/db_usuarios/conexion.php');
 require_once('../modelo/excepciones.php');
 
@@ -52,6 +58,10 @@ try {
         // Intentamos añadir el usuario a la BD
         $conn = new Consulta();
         $conn->añadirUsuario($usuario, $contraseña, $contenido);
+        // Sino se lanza una excepción con este método, se continúa:
+        
+        // Guardamos el usuario en la sesión
+        $_SESSION["usuario"] = $usuario;
         
         // Carga la pagina de consultas de la base de dados PR (perro_raza)
         header('Location: control_menu.php');
