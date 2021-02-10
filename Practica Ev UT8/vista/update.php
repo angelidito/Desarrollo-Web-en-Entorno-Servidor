@@ -17,6 +17,8 @@
 </head>
 
 <body>
+    <?php echo $_SESSION['userInfo']?>
+
     <h1>Actualizar info cuidados especiales</h1>
 
     <form action="" method="post">
@@ -48,7 +50,7 @@
     <h3>Cuidados especiaes por raza:</h3>
     <div>
         <?php
-            tabularMatriz($raza_cuidados, [ 'Raza', 'Cuidados especiales']);
+            echo $tablaDatos;
         ?>
     </div>
 </body>

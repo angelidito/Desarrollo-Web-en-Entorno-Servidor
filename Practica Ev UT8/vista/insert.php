@@ -11,6 +11,8 @@
 </head>
 
 <body>
+    <?php echo $_SESSION['userInfo']?>
+
     <h1>Añadir perro de raza</h1>
 
     <form action="" method="post">

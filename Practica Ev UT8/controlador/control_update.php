@@ -8,7 +8,7 @@ if (!isset($_SESSION['usuario'])) {
 
 require '../modelo/db_perro_raza/conexion.php';
 // Este fichero contiene una función que usaremos en la vista select.php. La usaremos para crear una tabla
-require 'misFunciones.php';
+require '../modelo/misFunciones.php';
 
 // Mensajes
 $errores='';
@@ -62,5 +62,7 @@ foreach ($conn->getDatosRaza() as $fila) {
     array_push($raza_cuidados, [$fila['raza'], $fila['cuidados_especiales']]);
 }
 
+// Habrá un echo con esta tabla en ../vista/update.php
+$tablaDatos = tabularMatriz($raza_cuidados, [ 'Raza', 'Cuidados especiales']);
 
 require_once('../vista/update.php');

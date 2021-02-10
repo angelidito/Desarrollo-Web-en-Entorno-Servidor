@@ -32,11 +32,15 @@ try {
 
         // Si coincicen...
         if ($autorizado) {
-            // Guardamos el usuario en la sesión
+            
+            // Guardamos el usuario y su imagen en la sesión
             $_SESSION["usuario"] = $usuario;
-            // Carga la pagina de consultas de la base de dados PR (perro_raza)
+            $_SESSION['imagen_usuario'] = $conn->getImagen($usuario);
+
+            // Carga el menú de consultas de la base de dados PR (perro_raza)
             header('Location: control_menu.php');
         }
+        
         // Si no:
         $errores = "Constaseña incorrecta.";
     }
@@ -48,7 +52,6 @@ try {
 } catch (Exception $e) {
     $errores = $e->getMessage();
 }
-
 
 
 require_once('../vista/login.php');

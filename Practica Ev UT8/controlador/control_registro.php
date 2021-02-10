@@ -2,7 +2,7 @@
 // Control de sesión
 session_start();
 if (isset($_SESSION['usuario'])) {
-    header("Location: controlador/control_menu.php");
+    header("Location: control_menu.php");
 }
 
 require('../modelo/db_usuarios/conexion.php');
@@ -49,6 +49,7 @@ try {
         // Lo leemos
         $contenido = fread($fichero, $img_tamaño);
         
+        // echo $contenido;
         // Esta línea me ha dado problemas algun dia, pero ya no
         $contenido = addslashes($contenido);
         
@@ -58,14 +59,16 @@ try {
         // Intentamos añadir el usuario a la BD
         $conn = new Consulta();
         $conn->añadirUsuario($usuario, $contraseña, $contenido);
-        // Sino se lanza una excepción con este método, se continúa:
+        // Sino se lanza una excepción con este método, se continúa...
         
-        // Guardamos el usuario en la sesión
+        // Guardamos el usuario y su imagen en la sesión
         $_SESSION["usuario"] = $usuario;
+        $_SESSION['imagen_usuario'] = $conn->getImagen($usuario);
         
         // Carga la pagina de consultas de la base de dados PR (perro_raza)
         header('Location: control_menu.php');
     }
+
     // Fin del if (isset($_POST['enviar']));
 } catch (ParametrosException $e) {
     $errores = $e->getMessage();

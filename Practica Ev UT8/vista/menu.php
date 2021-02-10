@@ -12,8 +12,10 @@
 </head>
 
 <body>
-    <p>Bienvenido, <?php echo $_SESSION['usuario']?>.</p>
+    <?php echo $_SESSION['userInfo']?>
+
     <h1>Registro de Perros de Raza</h1>
+
     <p>
         Nuestra base de datos pone a su disposición a más de cuatrocientos perros de diez razas diferentes.
     </p>

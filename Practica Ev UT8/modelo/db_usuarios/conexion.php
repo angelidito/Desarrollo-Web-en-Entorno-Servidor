@@ -38,6 +38,23 @@ class Consulta extends Conexion
         parent::__construct();
     }
 
+
+    /**
+     * Devuelve la imagen del usaurio especificado.
+     *
+     * @param $usuario Usuario cuya imagen buscamos.
+     *
+     * @return string Imagen codificada en base64.
+     */
+    public function getImagen($usuario)
+    {
+        return $this->conn->query(
+            "SELECT foto 
+                FROM usuarios
+                WHERE usuario = '$usuario'"
+        )->fetch_all()[0][0];
+    }
+
     
     /**
      * Comprueba que exista un usuario en la BD.
@@ -65,6 +82,7 @@ class Consulta extends Conexion
      * @param string $imagen Imagen de usuario.
      *
      * @throws UsuarioYaRegistradoException Si ya existe el usuario que se pretende introducir.
+     * @throws Exception Si no se ha realizado la inserción en la BD.
      */
     public function añadirUsuario($usuario, $contraseña, $imagen)
     {
@@ -85,7 +103,7 @@ class Consulta extends Conexion
         $this->conn->query($insert);
         
         if ($this->conn->affected_rows<1) {
-            throw new Exception("Algo no ha ido bien en la inserción, pero si llega a aparecer este mensaje, no sé qué puede haber sido aparte de la base de datos: que no esté creada o que esté mal creada.");
+            throw new Exception("Algo no ha ido bien en la inserción en la base de datos: quizá no esté creada o esté mal creada.");
         }
     }
 
@@ -102,7 +120,7 @@ class Consulta extends Conexion
      * @throws UsuarioNoRegistradoException Si ni el usuario ni la contraseña condicen.
      * @throws Exception Si se encuentra más de un usuario. No debería ocurrir si la BD está bien diseñada.
      *
-     * @return mixed Si coinciden los datos con la BD true; false si no.
+     * @return boolean Si coinciden los datos con la BD true; false si no.
      */
     public function logIn($usuario, $contraseña)
     {

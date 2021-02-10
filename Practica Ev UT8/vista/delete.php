@@ -12,6 +12,8 @@
 </head>
 
 <body>
+    <?php echo $_SESSION['userInfo']?>
+
     <h1>Notificar defunción</h1>
     <p>
         Al notificar la defunción de un perro, <strong>se eliminará</strong> el registro asociado de la base de datos.

@@ -8,34 +8,37 @@
  * @param mixed $matrizDatos Datos a tabular. Array de arrays
  * @param array $arrayCabeceras Cabeceras de la tabla.
  *
+ * @return string Texto HTML de una tabla con los datos del la matriz.
+ *
  * @author Ángel M. M. Díez
  */
 function tabularMatriz($matrizDatos, $arrayCabeceras = null)
 {
     // Tabla
-    echo '<table border=1 >';
-
+    $tabla = '<table border=1 >';
+ 
     // Encabezados
     if ($arrayCabeceras != null) {
-        echo "<tr>";
+        $tabla .=  "<tr>";
         foreach ($arrayCabeceras as $th) {
-            ;
-            echo "<th>$th</th>";
+            $tabla .=  "<th>$th</th>";
         }
-        echo "<tr>";
+        $tabla .=  "<tr>";
     }
 
     // Datos
     foreach ($matrizDatos as $fila) {
-        echo '<tr>';
+        $tabla .=  '<tr>';
         foreach ($fila as $celda) {
-            echo "<td>" . $celda . "</td>";
+            $tabla .=  "<td>" . $celda . "</td>";
         }
 
-        echo '</tr>';
+        $tabla .=  '</tr>';
     }
 
-    echo "</table>";
+    $tabla .=  "</table>";
+
+    return $tabla;
 }
 
 /**
@@ -46,9 +49,11 @@ function tabularMatriz($matrizDatos, $arrayCabeceras = null)
  * @param string $encodedImg Imagen codificada en base 64.
  * @param string $alt Texto alternativo de la imagen.
  *
+ * @return string Texto HTML de un elemetno img.
+ *
  * @author Ángel M. M. Díez
  */
-function imgHTMLItemFromBase64jpg($encodedImg, $alt='')
+function HTMLImgItemFromBase64jpg($encodedImg, $alt='')
 {
-    echo "<img src='data:image/jpg; base64, " . base64_encode($encodedImg) . "' alt='$alt'>";
+    return  "<img src='data:image/jpg;charset=utf-8;base64, " . base64_encode($encodedImg) . "' alt='$alt' >";
 }

@@ -12,7 +12,9 @@
 </head>
 
 <body>
-    <h1>Busqueda de Perros por Raza</h1>
+    <?php echo $_SESSION['userInfo']?>
+
+    <h1>Busqueda de perros por raza</h1>
 
     <form action="" method="post">
         <ul>
@@ -33,9 +35,9 @@
 
         <div>
             <?php
-            if ($perrosDeRaza != []) {
+            if ($tablaDatos != '') {
                 echo "<h3>Los siguientes perros son $raza:</h3>";
-                tabularMatriz($perrosDeRaza, ['ID', 'Nombre', 'Horas de paseo', 'Dueño']);
+                echo $tablaDatos;
             }
             ?>
         </div>

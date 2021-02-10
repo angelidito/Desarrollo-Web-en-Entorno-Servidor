@@ -7,6 +7,7 @@
     <title>Registro</title>
     <link rel="stylesheet" href="../estilos/usuarios.css">
     <link rel="stylesheet" href="../estilos/avisos.css">
+
 </head>
 
 <body>

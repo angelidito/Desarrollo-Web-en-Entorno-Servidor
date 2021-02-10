@@ -7,8 +7,9 @@ if (!isset($_SESSION['usuario'])) {
 }
 
 require '../modelo/db_perro_raza/conexion.php';
-// Este fichero contiene una función que usaremos en la vista select.php. La usaremos para crear una tabla
-require 'misFunciones.php';
+// Este fichero contiene una función que usaremos en la vista select.php. La usaremos para crear una tabla con los datos necesarios
+require '../modelo/misFunciones.php';
+$tablaDatos=''; // esta será la tabla
 
 // Mensaje de error, sea el que sea
 $errores='';
@@ -40,6 +41,8 @@ try {
 
             // Añadimos el array al array de perros de raza (que se tabulará), el cual será un array de arrays (o matriz).
             array_push($perrosDeRaza, $datosPerro);
+
+            $tablaDatos = tabularMatriz($perrosDeRaza, ['ID', 'Nombre', 'Horas de paseo', 'Dueño']);
         }
     }
 } catch (NoFilasAfectadasException $e) {
@@ -57,4 +60,7 @@ foreach ($conn->getDatosRaza() as $fila) {
     }
     $razas .= ">" . $fila['raza'] . "</option>";
 }
+
+
+
 require_once('../vista/select.php');
