@@ -37,6 +37,7 @@ try {
         if (strlen($nombre)>30 || strlen($nombre)< 2) {
             throw new LongitudParametrosException("El nombre del perro debe tener entre 2 y 30 caracteres");
         }
+        // Controlo esto en el formulario, pero por si eso no llegase a funcionar:
         if (!is_numeric($horas_paseo)) {
             throw new ParametrosException("Las horas de paseo deben ser un número");
         }
