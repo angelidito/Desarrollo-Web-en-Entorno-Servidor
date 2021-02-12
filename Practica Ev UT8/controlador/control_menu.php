@@ -20,7 +20,7 @@ if (isset($_POST['cerrar'])) {
     setcookie(session_name(), '', time() - 3600, '/', '', 0, 0);
     session_destroy();
     $aux = false;
-    header("Location: ..?");
+    header("Location: ..");
 }
 
 require '../modelo/misFunciones.php';
