@@ -31,7 +31,15 @@ try {
 
         $conn->eliminarPerro($id_perro);
 
-        $mensaje = 'Notificación recibida.<br>Ahora, reciba usted mi pésame.<br>Su perro ha sido borrado de la base de datos.<br>Vamos proceder a borrarle el recuerdo de la memoria...';
+        $mensaje = "Notificación recibida.<br>El perro con ID $id_perro ha sido borrado de la base de datos y de la vida.<br>Ahora, reciba usted mi pésame.";
+
+        // Control de sesiones:
+        // Perros borrados en la sesión
+        if ($_SESSION['perrosBorrados'] == '') {
+            $_SESSION['perrosBorrados'] = '<p>Defunciones notificadas (ID):</p>';
+        }
+        // Añadimos perro
+        $_SESSION['perrosBorrados'] .= "<p>$id_perro</p>";
     }
 } catch (ParametrosException $e) {
     $errores .= $e->getMessage();

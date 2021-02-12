@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -12,9 +12,18 @@
 </head>
 
 <body>
-    <?php echo $_SESSION['userInfo']?>
+    <div class="userInfo">
+        <?php echo $_SESSION['userInfo']?>
+        <div class="perrosInfo">
+            <?php echo $_SESSION['perrosAñadidos']?>
+            <?php echo $_SESSION['perrosBorrados']?>
+        </div>
+    </div>
+
+
 
     <h1>Registro de Perros de Raza</h1>
+
 
     <p>
         Nuestra base de datos pone a su disposición a más de cuatrocientos perros de diez razas diferentes.

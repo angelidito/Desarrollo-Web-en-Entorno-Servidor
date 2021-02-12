@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -17,7 +17,13 @@
 </head>
 
 <body>
-    <?php echo $_SESSION['userInfo']?>
+    <div class="userInfo">
+        <?php echo $_SESSION['userInfo']?>
+        <div class="perrosInfo">
+            <?php echo $_SESSION['perrosAñadidos']?>
+            <?php echo $_SESSION['perrosBorrados']?>
+        </div>
+    </div>
 
     <h1>Actualizar info cuidados especiales</h1>
 

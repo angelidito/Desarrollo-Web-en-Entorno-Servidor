@@ -64,6 +64,9 @@ try {
         // Guardamos el usuario y su imagen en la sesión
         $_SESSION["usuario"] = $usuario;
         $_SESSION['imagen_usuario'] = $conn->getImagen($usuario);
+        // Otras variables de sesión
+        $_SESSION['perrosAñadidos'] = '';
+        $_SESSION['perrosBorrados'] = '';
         
         // Carga la pagina de consultas de la base de dados PR (perro_raza)
         header('Location: control_menu.php');

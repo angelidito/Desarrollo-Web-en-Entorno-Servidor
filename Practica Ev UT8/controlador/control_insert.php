@@ -59,6 +59,14 @@ try {
                 Se ha añadido un nuevo $raza con ID $id_perro a la base de datos:<br>"
                 . $perro->getInfo()
                 . "</p>";
+
+        // Control de sesiones:
+        // Perros añadidos en la sesión
+        if ($_SESSION['perrosAñadidos'] == '') {
+            $_SESSION['perrosAñadidos'] = '<p>Perros añadidos:</p><p>ID -  nombre</p>';
+        }
+        // Añadimos perro
+        $_SESSION['perrosAñadidos'] .= "<p>$id_perro - " . $perro->getNombre() . "</p>";
     }
 } catch (ParametrosException $e) {
     $errores .= $e->getMessage();

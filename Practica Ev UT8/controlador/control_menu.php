@@ -2,22 +2,34 @@
 
 session_start();
 
+// Esta variable la pongo porque:
+// cuando se entraba en el primer if
+// y se ejecutaba lo de dentro, por algún motivo,
+// antes de ejecturarse el header, el programa seguía corriendo
+// y se ejecutaba el siguient if con su header.
+$aux = true;
+// Lo cual no era nada conveniente ya que en index mostraba un mensaje
+// que solo debía salir cuando se intentaba entrar en el programa sin
+// tener la sesión iniciada.
+// No era un fallo de ejecución, pero aparece en rojo como un error
+// y esto podría confundir al usuario
+
+
 if (isset($_POST['cerrar'])) {
     $_SESSION = array();
     setcookie(session_name(), '', time() - 3600, '/', '', 0, 0);
     session_destroy();
-    header("Location: ..");
+    $aux = false;
+    header("Location: ..?");
 }
-
-// Control de sesión para no acceder al programa sin iniciarla
-if (!isset($_SESSION['usuario'])) {
-    header("Location: ..?SesionNoIniciada=");
-}
-
 
 require '../modelo/misFunciones.php';
-
 require_once '../modelo/excepciones.php';
+
+// Control de sesión para no acceder al programa sin iniciarla
+if ($aux && !isset($_SESSION['usuario'])) {
+    header("Location: ..?SesionNoIniciada=");
+}
 
 $usuario = $_SESSION['usuario'];
 
@@ -25,10 +37,8 @@ $user_image = $_SESSION['imagen_usuario'];
 
 // Información de usuario:
 $userInfo =
-    '<div class="userInfo">' .
-        HTMLImgItemFromBase64jpg($user_image, 'user_image') .
-        '<br>' . $usuario .
-    '</div>';
+    HTMLImgItemFromBase64jpg($user_image, "Imagen de $usuario") .
+    '<br>' . $usuario;
 $_SESSION['userInfo'] = $userInfo;
 
 
