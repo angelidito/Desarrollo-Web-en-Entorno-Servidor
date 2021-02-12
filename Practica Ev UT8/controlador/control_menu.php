@@ -23,7 +23,7 @@ if (isset($_POST['cerrar'])) {
     header("Location: ..");
 }
 
-require '../modelo/misFunciones.php';
+require 'misFunciones.php';
 require_once '../modelo/excepciones.php';
 
 // Control de sesión para no acceder al programa sin iniciarla

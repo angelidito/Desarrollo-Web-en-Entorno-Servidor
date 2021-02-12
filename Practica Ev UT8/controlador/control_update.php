@@ -8,7 +8,7 @@ if (!isset($_SESSION['usuario'])) {
 
 require '../modelo/db_perro_raza/conexion.php';
 // Este fichero contiene una función que usaremos en la vista select.php. La usaremos para crear una tabla
-require '../modelo/misFunciones.php';
+require 'misFunciones.php';
 
 // Mensajes
 $errores='';

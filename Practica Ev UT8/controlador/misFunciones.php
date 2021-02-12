@@ -1,4 +1,11 @@
 <?php
+// Este fichero contiene tres funciones nada más.
+// A la primera se le llama en control_select.php y control_update.php
+// A la segunda, sólamente en control_menu.php.
+// Podría haberla escrito sólamente ahí, pero me pareció
+// interesante usar un fichero como una "librería".
+// La tercera no la uso, la creé al plantearme admitir también imágenes PNG en la BD
+
 
 /**
  * Tabula una matriz de datos.
@@ -42,18 +49,35 @@ function tabularMatriz($matrizDatos, $arrayCabeceras = null)
 }
 
 /**
- * Escribe un string de un elemento HTML img.
+ * Devuelve un string de un elemento HTML img.
  *
  * La estructura del string devuelto es la siguiente: <img src='data:image/jpg; base64, CODIFICACIÓN_DE_LA_IMAGEN' alt='Texto_Alternativo'>
  *
- * @param string $encodedImg Imagen codificada en base 64.
+ * @param string $encodedImg Imagen JPG codificada en base 64.
  * @param string $alt Texto alternativo de la imagen.
  *
- * @return string Texto HTML de un elemetno img.
+ * @return string Texto HTML de un elemento img.
  *
  * @author Ángel M. M. Díez
  */
 function HTMLImgItemFromBase64jpg($encodedImg, $alt='')
 {
     return  "<img src='data:image/jpg;charset=utf-8;base64, " . base64_encode($encodedImg) . "' alt='$alt' >";
+}
+
+/**
+ * Devuelve un string de un elemento HTML img.
+ *
+ * La estructura del string devuelto es la siguiente: <img src='data:image/png; base64, CODIFICACIÓN_DE_LA_IMAGEN' alt='Texto_Alternativo'>
+ *
+ * @param string $encodedImg Imagen PNG codificada en base 64.
+ * @param string $alt Texto alternativo de la imagen.
+ *
+ * @return string Texto HTML de un elemento img.
+ *
+ * @author Ángel M. M. Díez
+ */
+function HTMLImgItemFromBase64png($encodedImg, $alt='')
+{
+    return  "<img src='data:image/png;charset=utf-8;base64, " . base64_encode($encodedImg) . "' alt='$alt' >";
 }
