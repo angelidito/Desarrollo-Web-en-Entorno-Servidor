@@ -14,18 +14,21 @@
  *
  * @param mixed $matrizDatos Datos a tabular. Array de arrays
  * @param array $arrayCabeceras Cabeceras de la tabla.
+ * @param string $clase Clases que tendrá la tabla (separadas por espacios).
  *
  * @return string Texto HTML de una tabla con los datos del la matriz.
  *
  * @author Ángel M. M. Díez
  */
-function tabularMatriz($matrizDatos, $arrayCabeceras = null)
+function tabularMatriz($matrizDatos, $arrayCabeceras = null, $clase = '')
 {
     // Tabla
-    $tabla = '<table border=1 >';
- 
+    $tabla = "<table border=1  class='$clase'>";
+    $nFilas = PHP_INT_MAX;
+
     // Encabezados
-    if ($arrayCabeceras != null) {
+    if (is_array($arrayCabeceras)) {
+        $nFilas = count($arrayCabeceras);
         $tabla .=  "<tr>";
         foreach ($arrayCabeceras as $th) {
             $tabla .=  "<th>$th</th>";
@@ -36,7 +39,12 @@ function tabularMatriz($matrizDatos, $arrayCabeceras = null)
     // Datos
     foreach ($matrizDatos as $fila) {
         $tabla .=  '<tr>';
+        $n = 0;
         foreach ($fila as $celda) {
+            $n++;
+            if ($nFilas <= $n) {
+                break;
+            }
             $tabla .=  "<td>" . $celda . "</td>";
         }
 
@@ -60,7 +68,7 @@ function tabularMatriz($matrizDatos, $arrayCabeceras = null)
  *
  * @author Ángel M. M. Díez
  */
-function HTMLImgItemFromBase64jpg($encodedImg, $alt='')
+function HTMLImgItemFromBase64jpg($encodedImg, $alt = '')
 {
     return  "<img src='data:image/jpg;charset=utf-8;base64, " . base64_encode($encodedImg) . "' alt='$alt' >";
 }
@@ -77,7 +85,7 @@ function HTMLImgItemFromBase64jpg($encodedImg, $alt='')
  *
  * @author Ángel M. M. Díez
  */
-function HTMLImgItemFromBase64png($encodedImg, $alt='')
+function HTMLImgItemFromBase64png($encodedImg, $alt = '')
 {
     return  "<img src='data:image/png;charset=utf-8;base64, " . base64_encode($encodedImg) . "' alt='$alt' >";
 }
